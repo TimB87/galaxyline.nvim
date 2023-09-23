@@ -1,17 +1,17 @@
 local buffer = {}
 
 local buf_icon = {
-  help = "  ",
-  defx = "  ",
-  nerdtree = "  ",
-  denite = "  ",
-  ["vim-plug"] = "  ",
-  vista = " 識",
-  vista_kind = "  ",
-  dbui = "  ",
-  NeogitStatus = "  ",
-  NvimTree = "  ",
-  netrw = "  ",
+  help = '  ',
+  defx = '  ',
+  nerdtree = '  ',
+  denite = '  ',
+  ['vim-plug'] = '  ',
+  vista = ' 識',
+  vista_kind = '  ',
+  dbui = '  ',
+  NeogitStatus = '  ',
+  NvimTree = '  ',
+  netrw = '  ',
 }
 
 buffer.get_buffer_type_icon = function()

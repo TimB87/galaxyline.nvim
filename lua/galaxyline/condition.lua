@@ -1,26 +1,26 @@
 local condition = {}
 
 condition.buffer_not_empty = function()
-  local buffer_lines = vim.api.nvim_buf_get_lines(0, 0, vim.fn.line("$"), true)
-  if buffer_lines[1] == "" and #buffer_lines == 1 then
+  local buffer_lines = vim.api.nvim_buf_get_lines(0, 0, vim.fn.line '$', true)
+  if buffer_lines[1] == '' and #buffer_lines == 1 then
     return false
   end
   return true
 end
 
 condition.check_git_workspace = function()
-  local get_git_dir = require("galaxyline.providers.vcs").get_git_dir
-  if vim.bo.buftype == "terminal" then
+  local get_git_dir = require('galaxyline.providers.vcs').get_git_dir
+  if vim.bo.buftype == 'terminal' then
     return false
   end
   local current_file = vim.api.nvim_buf_get_name(0)
   local current_dir
   -- if file is a symlinks
-  if vim.fn.getftype(current_file) == "link" then
+  if vim.fn.getftype(current_file) == 'link' then
     local real_file = vim.fn.resolve(current_file)
-    current_dir = vim.fn.fnamemodify(real_file, ":h")
+    current_dir = vim.fn.fnamemodify(real_file, ':h')
   else
-    current_dir = vim.fn.expand("%:p:h")
+    current_dir = vim.fn.expand '%:p:h'
   end
   local result = get_git_dir(current_dir)
   if not result then
