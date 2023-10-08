@@ -29,6 +29,7 @@ local function load_providers()
     WhiteSpace = whitespace.get_item,
     GetLspClient = lspclient.get_lsp_client,
     SearchResults = search.get_search_results,
+    LazyUpdates = extension.lazyupdates,
   }
 
   local diagnostic = require 'galaxyline.providers.diagnostic'

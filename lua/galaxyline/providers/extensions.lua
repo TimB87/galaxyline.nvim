@@ -99,4 +99,8 @@ extensions.vimtex_status = function(
   return status
 end
 
+extensions.lazyupdates = function()
+  return require('lazy.status').updates()
+end
+
 return extensions

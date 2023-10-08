@@ -42,4 +42,12 @@ condition.check_active_lsp = function()
   return next(clients) ~= nil
 end
 
+condition.haslazyupdates = function()
+  if not require('lazy.status').has_updates then
+    return false
+  else
+    return true
+  end
+end
+
 return condition
