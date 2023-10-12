@@ -103,7 +103,7 @@ extensions.lazyupdates = function()
   return require('lazy.status').updates()
 end
 
-extensions.getcmdvianoice = function()
+extensions.noiceshowcmd = function()
   return require('noice').api.status.command.get()
 end
 
