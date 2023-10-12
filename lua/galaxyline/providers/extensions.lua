@@ -103,4 +103,8 @@ extensions.lazyupdates = function()
   return require('lazy.status').updates()
 end
 
+extensions.getcmdvianoice = function()
+  return require('noice').api.status.command.get()
+end
+
 return extensions

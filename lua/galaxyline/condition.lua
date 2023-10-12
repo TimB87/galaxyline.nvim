@@ -50,4 +50,11 @@ condition.haslazyupdates = function()
   end
 end
 
+condition.noicehascmd = function()
+  if not require('noice').api.status.command.has then
+    return false
+  end
+  return true
+end
+
 return condition
