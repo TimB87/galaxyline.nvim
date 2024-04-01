@@ -25,7 +25,7 @@ local _switch = {
 
 local _switch_metatable = {
   __index = function(_, k)
-    print(string.format('expect table or string got %s', type(k)))
+    print(string.format('Expected table or string, got %s instead', type(k)))
     return
   end,
 }

@@ -40,12 +40,15 @@ end
 function galaxyline.component_decorator(component_name)
   -- if section doesn't have component just return
   local ok, component_info = check_component_exists(component_name)
+
   if not ok then
-    print(string.format('Does not found this component: %s', component_name))
+    print(string.format('Did not find component: %s', component_name))
     return
   end
+
   local provider = component_info.provider or ''
   local icon = component_info.icon or ''
+
   if type(icon) == 'function' then
     icon = icon()
   end
@@ -75,25 +78,25 @@ function galaxyline.component_decorator(component_name)
     ['table'] = function()
       local output = ''
       for _, v in pairs(provider) do
-        if type(v) ~= 'string' and type(v) ~= 'function' then
-          print(string.format('Wrong provider type in %s', component_name))
-          return ''
-        end
+        local v_type = type(v)
 
-        if type(v) == 'string' then
-          if type(galaxyline_providers[v]) ~= 'function' then
-            if next(galaxyline_providers) ~= nil then
-              print(
-                string.format(
-                  'Does not found the provider in default provider in %s',
-                  component_name
-                )
+        if v_type == 'string' then
+          if type(galaxyline_providers[v]) == 'function' then
+            output = output .. exec_provider(icon, galaxyline_providers[v])
+          else
+            print(
+              string.format(
+                'Did not find provider in default providers in %s',
+                component_name
               )
-              return ''
-            end
+            )
             return ''
           end
-          output = output .. exec_provider(icon, galaxyline_providers[v])
+        elseif v_type == 'function' then
+          output = output .. exec_provider(icon, v)
+        else
+          print(string.format('Wrong provider type in %s', component_name))
+          return ''
         end
 
         if type(v) == 'function' then
